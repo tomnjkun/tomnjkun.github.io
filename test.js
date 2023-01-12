@@ -1,5 +1,6 @@
 const scanButton = document.getElementById('scan')
 const writeButton = document.getElementById('write')
+const content = document.getElementById('text-test')
 
 scanButton.addEventListener("click", async () => {
     log("User clicked scan button");
@@ -27,7 +28,7 @@ scanButton.addEventListener("click", async () => {
   
     try {
       const ndef = new NDEFReader();
-      await ndef.write("Hello world!");
+      await ndef.write(content);
       log("> Message written");
     } catch (error) {
       log("Argh! " + error);
