@@ -10,12 +10,6 @@ if (/Chrome\/(\d+\.\d+.\d+.\d+)/.test(navigator.userAgent)){
   }
 }
 
-const log = ChromeSamples.log;
-
-if (!("NDEFReader" in window)){
-  ChromeSamples.setStatus("Web NFC is not available. Use Chrome on Android.");
-}
-
 var ChromeSamples = {
   log: function() {
     var line = Array.prototype.slice.call(arguments).map(function(argument) {
@@ -41,6 +35,12 @@ var ChromeSamples = {
     content.appendChild(newContent);
   }
 };
+
+log = ChromeSamples.log;
+
+if (!("NDEFReader" in window)){
+  ChromeSamples.setStatus("Web NFC is not available. Use Chrome on Android.");
+}
 
 scanButton.addEventListener("click", async () => {
     log("User clicked scan button");
