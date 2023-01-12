@@ -1,6 +1,6 @@
 const scanButton = document.getElementById('scan')
 const writeButton = document.getElementById('write')
-const content = document.getElementById('text-test')
+const content2 = document.getElementById('text-test')
 
 if (/Chrome\/(\d+\.\d+.\d+.\d+)/.test(navigator.userAgent)){
   // Let's log a warning if the sample is not supposed to execute on this
@@ -10,7 +10,7 @@ if (/Chrome\/(\d+\.\d+.\d+.\d+)/.test(navigator.userAgent)){
   }
 }
 
-log = ChromeSamples.log;
+const log = ChromeSamples.log;
 
 if (!("NDEFReader" in window)){
   ChromeSamples.setStatus("Web NFC is not available. Use Chrome on Android.");
@@ -68,7 +68,7 @@ scanButton.addEventListener("click", async () => {
   
     try {
       const ndef = new NDEFReader();
-      await ndef.write(content);
+      await ndef.write(content2);
       log("> Message written");
     } catch (error) {
       log("Argh! " + error);
