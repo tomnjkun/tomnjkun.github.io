@@ -1,7 +1,8 @@
 import { Button, Grid  } from "@nextui-org/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function NFCPanel() {
+    const [log,setLog] = useState<String>('');
     useEffect(()=>{
         if (/Chrome\/(\d+\.\d+.\d+.\d+)/.test(navigator.userAgent)){
             // Let's log a warning if the sample is not supposed to execute on this
@@ -26,14 +27,18 @@ export default function NFCPanel() {
 
             ndef.onreadingerror = () => {
                 console.log("Argh! Cannot read data from the NFC tag. Try another one?");
+                
             };
           
             ndef.onreading = ({ message, serialNumber }:any) => {
                 console.log(`> Serial Number: ${serialNumber}`);
                 console.log(`> Records: (${message.records.length})`);
+                setLog(`> Serial Number: ${serialNumber}`)
+                setLog(`> Records: (${message.records.length})`)
             };
         } catch(error){
             console.log("Argh! " + error);
+            setLog("Argh!"+ error)
         }
     }
 
@@ -51,7 +56,7 @@ export default function NFCPanel() {
                 </Button>
             </Grid>
             <Grid>
-                <p id="log"></p>
+                <p id="log">{log}</p>
             </Grid>
         </Grid.Container>
         </>
