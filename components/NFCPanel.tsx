@@ -56,8 +56,8 @@ export default function NFCPanel() {
                     Write
                 </Button>
             </Grid>
-            <p id="log">{log}</p>
         </Grid.Container>
+        {log.map(logs =><p>{logs}</p>)}
         </>
     )
 }
