@@ -57,7 +57,9 @@ export default function NFCPanel() {
                 </Button>
             </Grid>
         </Grid.Container>
-        {log.map(logs =><p>{logs}</p>)}
+        {log.map(logs =>(
+            <p>{logs}</p>
+        ))}
         </>
     )
 }
