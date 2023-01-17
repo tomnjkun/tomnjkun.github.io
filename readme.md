@@ -1,88 +1,70 @@
-# Blank Solito Example Monorepo 🕴
+# Getting Started with Create React App
 
-```sh
-npx create-solito-app@latest my-solito-app
-```
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-👾 [View the website](https://example.solito.dev)
+## Available Scripts
 
-## ⚡️ Instantly clone & deploy
+In the project directory, you can run:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnandorojo%2Fsolito%2Ftree%2Fmaster%2Fexample-monorepos%2Fblank&env=ENABLE_ROOT_PATH_BUILD_CACHE&root-directory=apps/next&envDescription=Set%20this%20environment%20variable%20to%201%20for%20Turborepo%20to%20cache%20your%20node_modules.&envLink=https%3A%2F%2Ftwitter.com%2Fjaredpalmer%2Fstatus%2F1488954563533189124&project-name=solito-app&repo-name=solito-app&demo-title=Solito%20App%20%E2%9A%A1%EF%B8%8F&demo-description=React%20Native%20%2B%20Next.js%20starter%20with%20Solito.%20Made%20by%20Fernando%20Rojo.&demo-url=https%3A%2F%2Fsolito.dev%2Fstarter&demo-image=https%3A%2F%2Fsolito.dev%2Fimg%2Fog.png)
+### `npm start`
 
-## 🔦 About
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-This monorepo is a blank(ish) starter for an Expo + Next.js app.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-While it's pretty barebones, it does a lot of the annoying config for you. The folder structure is opinionated, based on my long experience building for this stack.
+### `npm test`
 
-## 📦 Included packages
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- `solito` for cross-platform navigation
-- `moti` for animations
-- `dripsy` for theming/design (you can bring your own, too)
-- Expo SDK 46
-- Next.js 12
-- React Navigation 6
+### `npm run build`
 
-## 🗂 Folder layout
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- `apps` entry points for each app
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-  - `expo`
-  - `next`
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- `packages` shared packages across apps
-  - `app` you'll be importing most files from `app/`
-    - `features` (don't use a `screens` folder. organize by feature.)
-    - `provider` (all the providers that wrap the app, and some no-ops for Web.)
-    - `navigation` Next.js has a `pages/` folder. React Native doesn't. This folder contains navigation-related code for RN. You may use it for any navigation code, such as custom links.
+### `npm run eject`
 
-You can add other folders inside of `packages/` if you know what you're doing and have a good reason to.
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-## 🏁 Start the app
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-- Install dependencies: `yarn`
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-- Next.js local dev: `yarn web`
-  - Runs `yarn next`
-- Expo local dev: `yarn native`
-  - Runs `expo start`
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## 🆕 Add new dependencies
+## Learn More
 
-### Pure JS dependencies
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-If you're installing a JavaScript-only dependency that will be used across platforms, install it in `packages/app`:
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-```sh
-cd packages/app
-yarn add date-fns
-cd ../..
-yarn
-```
+### Code Splitting
 
-### Native dependencies
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-If you're installing a library with any native code, you must install it in `apps/expo`:
+### Analyzing the Bundle Size
 
-```sh
-cd apps/expo
-yarn add react-native-reanimated
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-cd ../..
-yarn
-```
+### Making a Progressive Web App
 
-You can also install the native library inside of `packages/app` if you want to get autoimport for that package inside of the `app` folder. However, you need to be careful and install the _exact_ same version in both packages. If the versions mismatch at all, you'll potentially get terrible bugs. This is a classic monorepo issue. I use `lerna-update-wizard` to help with this (you don't need to use Lerna to use that lib).
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-## 🎙 About the creator
+### Advanced Configuration
 
-Follow Fernando Rojo on Twitter: [@FernandoTheRojo](https://twitter.com/fernandotherojo)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-## 🧐 Why use Expo + Next.js?
+### Deployment
 
-See my talk about this topic at Next.js Conf 2021:
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-<a href="https://www.youtube.com/watch?v=0lnbdRweJtA"><img width="1332" alt="image" src="https://user-images.githubusercontent.com/13172299/157299915-b633e083-f271-48c6-a262-7b7eef765be5.png">
-</a>
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
