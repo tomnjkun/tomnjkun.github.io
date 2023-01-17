@@ -1,1 +1,0 @@
-{"ast":null,"code":"export { default } from '@expo/next-adapter/document';","map":{"version":3,"names":["default"],"sources":["/Users/dp-tonmai/Documents/GitHub/tomnjkun.github.io/apps/next/pages/_document.tsx"],"sourcesContent":["export { default } from '@expo/next-adapter/document'\n"],"mappings":"AAAA,SAASA,OAAO,QAAQ,6BAA6B"},"metadata":{},"sourceType":"module"}

@@ -1,36 +1,75 @@
 import { Text, useSx, View, H1, P, Row, A } from 'dripsy'
 import { TextLink } from 'solito/link'
 import { MotiLink } from 'solito/moti'
-import NfcManager, {NfcTech} from 'react-native-nfc-manager';
-import { TouchableOpacity } from 'react-native';
-
-// Pre-step, call this before any NFC operations
-NfcManager.start
 
 export function HomeScreen() {
-  async function readNdef() {
-    try {
-      // register for the NFC tag with NDEF in it
-      await NfcManager.requestTechnology(NfcTech.Ndef);
-      // the resolved tag object will contain `ndefMessage` property
-      const tag = await NfcManager.getTag();
-      console.warn('Tag found', tag);
-    } catch (ex) {
-      console.warn('Oops!', ex);
-    } finally {
-      // stop the nfc scanning
-      NfcManager.cancelTechnologyRequest();
-    }
-  }
+  const sx = useSx()
 
   return (
     <View
       sx={{ flex: 1, justifyContent: 'center', alignItems: 'center', p: 16 }}
     >
-      <H1 sx={{ fontWeight: '800' }}>Welcome to test.</H1>
-      <TouchableOpacity onPress={readNdef}>
-        <Text>Scan a Tag</Text>
-      </TouchableOpacity>
+      <H1 sx={{ fontWeight: '800' }}>Welcome to Solito.</H1>
+      <View sx={{ maxWidth: 600 }}>
+        <P sx={{ textAlign: 'center' }}>
+          Here is a basic starter to show you how you can navigate from one
+          screen to another. This screen uses the same code on Next.js and React
+          Native.
+        </P>
+        <P sx={{ textAlign: 'center' }}>
+          Solito is made by{' '}
+          <A
+            href="https://twitter.com/fernandotherojo"
+            // @ts-expect-error react-native-web only types
+            hrefAttrs={{
+              target: '_blank',
+              rel: 'noreferrer',
+            }}
+            sx={{ color: 'blue' }}
+          >
+            Fernando Rojo
+          </A>
+          .
+        </P>
+      </View>
+      <View sx={{ height: 32 }} />
+      <Row>
+        <TextLink
+          href="/user/fernando"
+          textProps={{
+            style: sx({ fontSize: 16, fontWeight: 'bold', color: 'blue' }),
+          }}
+        >
+          Regular Link
+        </TextLink>
+        <View sx={{ width: 32 }} />
+        <MotiLink
+          href="/user/fernando"
+          animate={({ hovered, pressed }) => {
+            'worklet'
+
+            return {
+              scale: pressed ? 0.95 : hovered ? 1.1 : 1,
+              rotateZ: pressed ? '0deg' : hovered ? '-3deg' : '0deg',
+            }
+          }}
+          from={{
+            scale: 0,
+            rotateZ: '0deg',
+          }}
+          transition={{
+            type: 'timing',
+            duration: 150,
+          }}
+        >
+          <Text
+            selectable={false}
+            sx={{ fontSize: 16, color: 'black', fontWeight: 'bold' }}
+          >
+            Moti Link
+          </Text>
+        </MotiLink>
+      </Row>
     </View>
   )
 }

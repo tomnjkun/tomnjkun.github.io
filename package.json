@@ -15,8 +15,5 @@
   "scripts": {
     "native": "cd apps/expo && expo start",
     "web": "cd apps/next && yarn next"
-  },
-  "dependencies": {
-    "react-native-nfc-manager": "^3.14.2"
   }
 }
