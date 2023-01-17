@@ -3,9 +3,7 @@ import NfcManager, {NfcTech} from 'react-native-nfc-manager';
 import {View, Text, TouchableOpacity} from 'react-native';
 import { useState } from 'react';
 
-NfcManager.start();
-
-function App() {
+const App = () => {
   const [log,setLog] = useState('yeah')
   async function readNdef() {
     try {
