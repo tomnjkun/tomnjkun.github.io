@@ -48,8 +48,10 @@ export default function NFCPanel() {
             await ndef.write({
                 records: [{ recordType: "url", data: "https://developer.mozilla.org/en-US/docs/Web/API/NDEFReader/write" }],
             });
+            setLog("https://developer.mozilla.org/en-US/docs/Web/API/NDEFReader/write")
         }catch {
             console.log("Write failed :-( try again.");
+            setLog("Write failed :-( try again.")
         }
     }
 
