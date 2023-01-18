@@ -43,8 +43,8 @@ export default function NFCPanel() {
     }
 
     async function write (){
-        const ndef = new NDEFReader();
         try {
+            const ndef = new NDEFReader();
             await ndef.write({
                 records: [{ recordType: "url", data: "https://developer.mozilla.org/en-US/docs/Web/API/NDEFReader/write" }],
             });
