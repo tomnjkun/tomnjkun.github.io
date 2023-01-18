@@ -49,6 +49,7 @@ export default function NFCPanel() {
                 records: [{ recordType: "url", data: "https://w3c.github.io/web-nfc/" }]
             }).then(() => {
                 console.log("Message written.");
+                setLog("Message written.")
             }).catch(error => {
                 console.log(`Write failed :-( try again: ${error}.`);
             });
