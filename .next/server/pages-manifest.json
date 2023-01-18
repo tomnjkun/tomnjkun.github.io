@@ -1,0 +1,12 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/about": "pages/about.html",
+  "/api/hello": "pages/api/hello.js",
+  "/": "pages/index.html",
+  "/webNFC": "pages/webNFC.html",
+  "/catalogs/[id]": "pages/catalogs/[id].html",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html",
+  "/catalogs": "pages/catalogs.js"
+}
