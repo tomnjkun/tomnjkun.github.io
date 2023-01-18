@@ -42,6 +42,22 @@ export default function NFCPanel() {
         }
     }
 
+    async function write (){
+        try{
+            const ndef = new NDEFReader();
+            await ndef.write({
+                records: [{ recordType: "url", data: "https://w3c.github.io/web-nfc/" }]
+            }).then(() => {
+                console.log("Message written.");
+            }).catch(error => {
+                console.log(`Write failed :-( try again: ${error}.`);
+            });
+        } catch(error){
+            console.log("Argh! " + error);
+            setLog("Argh!"+ error)
+        }
+    }
+
     return (
         <>
         <Grid.Container gap={2}>
@@ -51,7 +67,7 @@ export default function NFCPanel() {
                 </Button>
             </Grid>
             <Grid>
-                <Button bordered color="error" auto >
+                <Button bordered color="error" auto onPress={write}>
                     Write
                 </Button>
             </Grid>
