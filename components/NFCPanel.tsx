@@ -43,19 +43,13 @@ export default function NFCPanel() {
     }
 
     async function write (){
-        try{
-            const ndef = new NDEFReader();
+        const ndef = new NDEFReader();
+        try {
             await ndef.write({
-                records: [{ recordType: "url", data: "https://w3c.github.io/web-nfc/" }]
-            }).then(() => {
-                console.log("Message written.");
-                setLog("Message written.")
-            }).catch(error => {
-                console.log(`Write failed :-( try again: ${error}.`);
+                records: [{ recordType: "url", data: "https://developer.mozilla.org/en-US/docs/Web/API/NDEFReader/write" }],
             });
-        } catch(error){
-            console.log("Argh! " + error);
-            setLog("Argh!"+ error)
+        }catch {
+            console.log("Write failed :-( try again.");
         }
     }
 
