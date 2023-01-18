@@ -8,7 +8,7 @@ export default function webNFC() {
         <>
         <SimpleLayout>
             <Container lg>
-                <h1>webNFC</h1>
+                <h1>welcome to webNFC</h1>
                 <NFCPanel></NFCPanel>
             </Container>
         </SimpleLayout>
