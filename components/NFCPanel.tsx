@@ -19,6 +19,18 @@ export default function NFCPanel() {
         }
     },[])
 
+    async function writeNDEF (){
+        console.log('enter')
+        try {
+            const ndef = new NDEFReader();
+            await ndef.write("ดุดันไม่เกรงใจใคร");
+            setLog("ดุดันไม่เกรงใจใคร")
+        }catch {
+            console.log("Write failed :-( try again.");
+            setLog("Write failed :-( try again.")
+        }
+    }
+
     async function scan (){
         try{
             const ndef = new NDEFReader();
@@ -42,19 +54,6 @@ export default function NFCPanel() {
         }
     }
 
-    async function write (){
-        try {
-            const ndef = new NDEFReader();
-            await ndef.write({
-                records: [{ recordType: "url", data: "https://developer.mozilla.org/en-US/docs/Web/API/NDEFReader/write" }],
-            });
-            setLog("https://developer.mozilla.org/en-US/docs/Web/API/NDEFReader/write")
-        }catch {
-            console.log("Write failed :-( try again.");
-            setLog("Write failed :-( try again.")
-        }
-    }
-
     return (
         <>
         <Grid.Container gap={2}>
@@ -64,7 +63,7 @@ export default function NFCPanel() {
                 </Button>
             </Grid>
             <Grid>
-                <Button bordered color="error" auto onPress={write}>
+                <Button bordered color="error" auto onPress={writeNDEF}>
                     Write
                 </Button>
             </Grid>
