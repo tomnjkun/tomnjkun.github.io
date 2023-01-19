@@ -19,7 +19,7 @@ export default function NFCPanel() {
         }
     },[])
 
-    async function writeNDEF (){
+    async function writeMessage (){
         console.log('enter')
         try {
             const ndef = new NDEFReader();
@@ -27,9 +27,24 @@ export default function NFCPanel() {
             setLog("ดุดันไม่เกรงใจใคร")
         }catch {
             console.log("Write failed :-( try again.");
-            setLog("Write failed :-( try again.")
+            setLog("Write Message failed :-( try again.")
         }
     }
+
+    async function writeURL (){
+        console.log('enter2')
+        try {
+            const ndef = new NDEFReader();
+            await ndef.write({
+                records: [{ recordType: "url", data: "https://www.youtube.com/watch?v=xdwUN9PV_kc&list=PLbJD0APnaN3LE_8MRKkDqwMPxbcbw-FMh&index=19" }],
+            });
+            setLog("http://example.com/")
+        }catch {
+            console.log("Write failed :-( try again.");
+            setLog("Write URL failed :-( try again.")
+        }
+    }
+
 
     async function scan (){
         try{
@@ -63,8 +78,13 @@ export default function NFCPanel() {
                 </Button>
             </Grid>
             <Grid>
-                <Button bordered color="error" auto onPress={writeNDEF}>
-                    Write
+                <Button bordered color="error" auto onPress={writeMessage}>
+                    Write Message
+                </Button>
+            </Grid>
+            <Grid>
+                <Button bordered color="success" auto onPress={writeURL}>
+                    Write URL
                 </Button>
             </Grid>
             <Grid>
