@@ -45,6 +45,22 @@ export default function NFCPanel() {
         }
     }
 
+    async function writeVcard (){
+        console.log('enter3')
+        try {
+            const ndef = new NDEFReader();
+            const vcfRecord={
+                recordType: "text",
+                mediaType: "text/vcard",
+                data: "BEGIN:VCARD\nVERSION:4.0\nFN:John Smith\nTEL;TYPE=work,voice;VALUE=uri:tel:+1-555-555-5555\nEMAIL;TYPE=work;VALUE=uri:mailto:john.smith@example.com\nEND:VCARD"
+            }
+            await ndef.write({ records: [vcfRecord] });
+        }catch {
+            console.log("Write failed :-( try again.");
+            setLog("Write vcard failed :-( try again.")
+        }
+    }
+
 
     async function scan (){
         try{
@@ -85,6 +101,11 @@ export default function NFCPanel() {
             <Grid>
                 <Button bordered color="success" auto onPress={writeURL}>
                     Write URL
+                </Button>
+            </Grid>
+            <Grid>
+                <Button bordered color="primary" auto onPress={writeVcard}>
+                    Write Vcard
                 </Button>
             </Grid>
             <Grid>
