@@ -55,6 +55,7 @@ export default function NFCPanel() {
                 data: "BEGIN:VCARD\nVERSION:4.0\nFN:John Smith\nTEL;TYPE=work,voice;VALUE=uri:tel:+1-555-555-5555\nEMAIL;TYPE=work;VALUE=uri:mailto:john.smith@example.com\nEND:VCARD"
             }
             await ndef.write({ records: [vcfRecord] });
+            setLog("vcard set")
         }catch {
             console.log("Write failed :-( try again.");
             setLog("Write vcard failed :-( try again.")
@@ -77,7 +78,7 @@ export default function NFCPanel() {
                 console.log(`> Serial Number: ${serialNumber}`);
                 console.log(`> Records: (${message.records.length})`);
                 setLog(`> Serial Number: ${serialNumber}`)
-                setLog(`> Records: (${message.records.length})`)
+                setLog(`> Records: (${message.records})`)
             };
         } catch(error){
             console.log("Argh! " + error);
@@ -89,22 +90,22 @@ export default function NFCPanel() {
         <>
         <Grid.Container gap={2}>
             <Grid>
-                <Button bordered color="secondary" auto onPress={scan}>
+                <Button bordered color="secondary" onPress={scan}>
                     Scan
                 </Button>
             </Grid>
             <Grid>
-                <Button bordered color="error" auto onPress={writeMessage}>
+                <Button bordered color="error" onPress={writeMessage}>
                     Write Message
                 </Button>
             </Grid>
             <Grid>
-                <Button bordered color="success" auto onPress={writeURL}>
+                <Button bordered color="success" onPress={writeURL}>
                     Write URL
                 </Button>
             </Grid>
             <Grid>
-                <Button bordered color="primary" auto onPress={writeVcard}>
+                <Button bordered color="primary" onPress={writeVcard}>
                     Write Vcard
                 </Button>
             </Grid>
