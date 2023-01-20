@@ -1,5 +1,6 @@
 import { Button, Grid  } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import VCard from "vcard-creator";
 
 export default function NFCPanel() {
     const [log,setLog] = useState<String>('');
@@ -49,12 +50,10 @@ export default function NFCPanel() {
         console.log('enter3')
         try {
             const ndef = new NDEFReader();
-            const vcfRecord={
-                recordType: "text",
-                mediaType: "text/vcard",
-                data: "BEGIN:VCARD\nVERSION:4.0\nFN:John Smith\nTEL;TYPE=work,voice;VALUE=uri:tel:+1-555-555-5555\nEMAIL;TYPE=work;VALUE=uri:mailto:john.smith@example.com\nEND:VCARD"
-            }
-            await ndef.write({ records: [vcfRecord] });
+            const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:John Doe\nTEL;TYPE=WORK,VOICE:(123) 456-7890\nEMAIL;TYPE=WORK:john.doe@example.com\nEND:VCARD"
+            const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
+            
+            await ndef.write({records: [{recordType:"text", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
             setLog("vcard set")
         }catch {
             console.log("Write failed :-( try again.");
@@ -71,7 +70,6 @@ export default function NFCPanel() {
 
             ndef.onreadingerror = () => {
                 console.log("Argh! Cannot read data from the NFC tag. Try another one?");
-                
             };
           
             ndef.onreading = ({ message, serialNumber }:any) => {
