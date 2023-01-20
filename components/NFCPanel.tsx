@@ -53,7 +53,7 @@ export default function NFCPanel() {
             const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:John Doe\nTEL;TYPE=WORK,VOICE:(123) 456-7890\nEMAIL;TYPE=WORK:john.doe@example.com\nEND:VCARD"
             const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
             
-            await ndef.write({records: [{recordType:"text", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
+            await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
             setLog("vcard set")
         }catch {
             console.log("Write failed :-( try again.");
