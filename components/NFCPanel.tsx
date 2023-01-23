@@ -57,7 +57,7 @@ export default function NFCPanel() {
         console.log('enter3')
         try {
             const ndef = new NDEFReader();
-            const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTITLE:${title}\nTEL;TYPE=WORK,VOICE:${phone}\nEMAIL;TYPE=WORK:${email}\nADR;TYPE#WORK,PREF:;;${workAddress}\nADR;TYPE#HOME:;;${homeAddress}\nEND:VCARD`
+            const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Gump;Forrest;;Mr.;\nFN:Forrest Gump\nORG:Bubba Gump Shrimp Co.\nTITLE:Shrimp Man\nPHOTO;VALUE#URI;TYPE#GIF:http://www.example.com/dir_photos/my_photo.gif\nTEL;TYPE#WORK,VOICE:(111) 555-1212\nTEL;TYPE#HOME,VOICE:(404) 555-1212\nADR;TYPE#WORK,PREF:;;100 Waters Edge;Baytown;LA;30314;United States of America\nLABEL;TYPE#WORK,PREF:100 Waters Edge\nBaytown\, LA 30314\nUnited States of America\nADR;TYPE#HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America\nLABEL;TYPE#HOME:42 Plantation St.\nBaytown\, LA 30314\nUnited States of America\nEMAIL:forrestgump@example.com\nREV:2008-04-24T19:52:43Z\nEND:VCARD`
             const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
             
             await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
