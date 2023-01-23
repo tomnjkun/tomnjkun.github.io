@@ -57,16 +57,7 @@ export default function NFCPanel() {
         console.log('enter3')
         try {
             const ndef = new NDEFReader();
-            const vcard = 
-            `BEGIN:VCARD\n
-            VERSION:3.0\n
-            FN:${name}\n
-            TITLE:${title}\n
-            TEL;TYPE=WORK,VOICE:${phone}\n
-            EMAIL;TYPE=WORK:${email}\n
-            ADR;TYPE#WORK,PREF:;;${workAddress}\n
-            ADR;TYPE#HOME:;;${homeAddress}\n
-            END:VCARD`
+            const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTITLE:${title}\nTEL;TYPE=WORK,VOICE:${phone}\nEMAIL;TYPE=WORK:${email}\nADR;TYPE#WORK,PREF:;;${workAddress}\nADR;TYPE#HOME:;;${homeAddress}\nEND:VCARD`
             const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
             
             await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
