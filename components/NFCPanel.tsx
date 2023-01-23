@@ -57,8 +57,33 @@ export default function NFCPanel() {
         console.log('enter3')
         try {
             const ndef = new NDEFReader();
-            const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTITLE:${title}\nTEL;TYPE=WORK,VOICE:${phone}\nEMAIL;TYPE=WORK:${email}\nADR;TYPE#WORK,PREF:;;${workAddress}\n
-            ADR;TYPE#HOME:;;${homeAddress}\nEND:VCARD`
+            const vcard = 
+            `BEGIN:VCARD\n
+            VERSION:3.0\n
+            N:Sripairojthikoon;Nutisa;;;\n
+            FN:Nutisa Sripairojthikoon\n
+            ORG:Digital Picnic Co., Ltd.\n
+            COMPANY:Digital Picnic Co., Ltd.\n
+            TITLE:Co-Founder & Head of Software Engineer\n
+            TEL;TYPE=work,pref:\n
+            TEL;CELL;TYPE=mobile,VOICE:+66846557894\n
+            TEL;CELL;TYPE=Office,VOICE:\n
+            TEL;TYPE=HOME,VOICE:\n
+            TEL;TYPE=SMS:\n
+            TEL;TYPE=SIGNAL:\n
+            EMAIL;TYPE=Email:nutisa@digitalpicnic.co.th\n
+            URL;TYPE=Digital Business Card:https://businesscard.digitalpicnic.co.th/n7s89p4\n
+            
+            URL;TYPE=Location:\n
+            KEY:OPENPGP4FPR:\n
+            UID:SMART vCARD-846557894\n
+            URL;TYPE=Website:https://www.digitalpicnic.co.th\n
+            
+            URL;TYPE=Line:https://line.me/ti/p/XSTvZVwFDa\n
+            URL;TYPE=Facebook:https://facebook.com/digitalpicnic.th\n
+            URL;TYPE=Youtube:https://youtube.com/channel/UCCStnGYYkq0zY8kYuW3opQg\n
+            NOTE;CHARSET=UTF-8:Digital Picnic is a group of “Creative Technologists,” specializing in transforming space into interactive digital art. We use the combination of art and technology to create the novel experience of playing. We spread the enjoyment into the museum, event, and learning center with projector mapping, mixed reality, and immersive experience.\n
+            END:VCARD`
             const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
             
             await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
