@@ -57,21 +57,15 @@ export default function NFCPanel() {
         console.log('enter3')
         try {
             const ndef = new NDEFReader();
-            const vcard = `BEGIN:VCARD\n
+            const vcard = 
+            `BEGIN:VCARD\n
             VERSION:3.0\n
-            N:Gump;Forrest;;Mr.;\n
-            FN:Forrest Gump\n
-            ORG:Bubba Gump Shrimp Co.\n
-            TITLE:Shrimp Man\n
-            PHOTO;VALUE#URI;TYPE#GIF:http://www.example.com/dir_photos/my_photo.gif\n
-            TEL;TYPE#WORK,VOICE:(111) 555-1212\n
-            TEL;TYPE#HOME,VOICE:(404) 555-1212\n
-            ADR;TYPE#WORK,PREF:;;100 Waters Edge;Baytown;LA;30314;United States of America\n
-            LABEL;TYPE#WORK,PREF:100 Waters Edge\nBaytown\, LA 30314\nUnited States of America\n
-            ADR;TYPE#HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America\n
-            LABEL;TYPE#HOME:42 Plantation St.\nBaytown\, LA 30314\nUnited States of America\n
-            EMAIL:forrestgump@example.com\n
-            REV:2008-04-24T19:52:43Z\n
+            FN:${name}\n
+            TITLE:${title}\n
+            TEL;TYPE=WORK,VOICE:${phone}\n
+            EMAIL;TYPE=WORK:${email}\n
+            ADR;TYPE#WORK,PREF:;;${workAddress}\n
+            ADR;TYPE#HOME:;;${homeAddress}\n
             END:VCARD`
             const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
             
