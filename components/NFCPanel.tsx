@@ -1,7 +1,6 @@
 import { Button, Grid  } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { Input } from "@nextui-org/react";
-import VCard from "vcard-creator";
 
 export default function NFCPanel() {
     const [log,setLog] = useState<String>('');
@@ -57,7 +56,7 @@ export default function NFCPanel() {
         console.log('enter3')
         try {
             const ndef = new NDEFReader();
-            const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Gump;Forrest;;Mr.;\nFN:Forrest Gump\nORG:Bubba Gump Shrimp Co.\nTITLE:Shrimp Man\nPHOTO;VALUE#URI;TYPE#GIF:http://www.example.com/dir_photos/my_photo.gif\nTEL;TYPE#WORK,VOICE:(111) 555-1212\nTEL;TYPE#HOME,VOICE:(404) 555-1212\nADR;TYPE#WORK,PREF:;;100 Waters Edge;Baytown;LA;30314;United States of America\nLABEL;TYPE#WORK,PREF:100 Waters Edge\nBaytown\, LA 30314\nUnited States of America\nADR;TYPE#HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America\nLABEL;TYPE#HOME:42 Plantation St.\nBaytown\, LA 30314\nUnited States of America\nEMAIL:forrestgump@example.com\nREV:2008-04-24T19:52:43Z\nEND:VCARD`
+            const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Sripairojthikoon;Nutisa;;;\nFN:Nutisa Sripairojthikoon\nORG:Digital Picnic Co., Ltd.\nCOMPANY:Digital Picnic Co., Ltd.\nTITLE:Co-Founder & Head of Software Engineer\nTEL;TYPE=work,pref:\nTEL;CELL;TYPE=mobile,VOICE:+66846557894\nTEL;CELL;TYPE=Office,VOICE:\nTEL;TYPE=HOME,VOICE:\nTEL;TYPE=SMS:\nTEL;TYPE=SIGNAL:\nEMAIL;TYPE=Email:nutisa@digitalpicnic.co.th\nURL;TYPE=Digital Business Card:https://businesscard.digitalpicnic.co.th/n7s89p4\nURL;TYPE=Location:\nKEY:OPENPGP4FPR:\nUID:SMART vCARD-846557894\nURL;TYPE=Website:https://www.digitalpicnic.co.th\nURL;TYPE=Line:https://line.me/ti/p/XSTvZVwFDa\nURL;TYPE=Facebook:https://facebook.com/digitalpicnic.th\nURL;TYPE=Youtube:https://youtube.com/channel/UCCStnGYYkq0zY8kYuW3opQg\nEND:VCARD`
             const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
             
             await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
