@@ -59,28 +59,19 @@ export default function NFCPanel() {
             const ndef = new NDEFReader();
             const vcard = `BEGIN:VCARD\n
             VERSION:3.0\n
-            N:Sripairojthikoon;Nutisa;;;\n
-            FN:Nutisa Sripairojthikoon\n
-            ORG:Digital Picnic Co., Ltd.\n
-            COMPANY:Digital Picnic Co., Ltd.\n
-            TITLE:Co-Founder & Head of Software Engineer\n
-            TEL;TYPE=work,pref:\n
-            TEL;CELL;TYPE=mobile,VOICE:+66846557894\n
-            TEL;CELL;TYPE=Office,VOICE:\n
-            TEL;TYPE=HOME,VOICE:\n
-            TEL;TYPE=SMS:\n
-            TEL;TYPE=SIGNAL:\n
-            EMAIL;TYPE=Email:nutisa@digitalpicnic.co.th\n
-            URL;TYPE=Digital Business Card:https://businesscard.digitalpicnic.co.th/n7s89p4\n
-            
-            URL;TYPE=Location:\n
-            KEY:OPENPGP4FPR:\n
-            UID:SMART vCARD-846557894\n
-            URL;TYPE=Website:https://www.digitalpicnic.co.th\n
-            
-            URL;TYPE=Line:https://line.me/ti/p/XSTvZVwFDa\n
-            URL;TYPE=Facebook:https://facebook.com/digitalpicnic.th\n
-            URL;TYPE=Youtube:https://youtube.com/channel/UCCStnGYYkq0zY8kYuW3opQg\n
+            N:Gump;Forrest;;Mr.;\n
+            FN:Forrest Gump\n
+            ORG:Bubba Gump Shrimp Co.\n
+            TITLE:Shrimp Man\n
+            PHOTO;VALUE#URI;TYPE#GIF:http://www.example.com/dir_photos/my_photo.gif\n
+            TEL;TYPE#WORK,VOICE:(111) 555-1212\n
+            TEL;TYPE#HOME,VOICE:(404) 555-1212\n
+            ADR;TYPE#WORK,PREF:;;100 Waters Edge;Baytown;LA;30314;United States of America\n
+            LABEL;TYPE#WORK,PREF:100 Waters Edge\nBaytown\, LA 30314\nUnited States of America\n
+            ADR;TYPE#HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America\n
+            LABEL;TYPE#HOME:42 Plantation St.\nBaytown\, LA 30314\nUnited States of America\n
+            EMAIL:forrestgump@example.com\n
+            REV:2008-04-24T19:52:43Z\n
             END:VCARD`
             const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
             
