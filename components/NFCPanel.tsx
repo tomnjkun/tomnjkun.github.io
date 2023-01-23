@@ -56,7 +56,7 @@ export default function NFCPanel() {
         console.log('enter3')
         try {
             const ndef = new NDEFReader();
-            const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Sripairojthikoon;Nutisa;;;\nFN:Nutisa Sripairojthikoon\nORG:Digital Picnic Co., Ltd.\nCOMPANY:Digital Picnic Co., Ltd.\nTITLE:Co-Founder & Head of Software Engineer\nTEL;TYPE=work,pref:\nTEL;CELL;TYPE=mobile,VOICE:+66846557894\nTEL;CELL;TYPE=Office,VOICE:\nTEL;TYPE=HOME,VOICE:\nTEL;TYPE=SMS:\nTEL;TYPE=SIGNAL:\nEMAIL;TYPE=Email:nutisa@digitalpicnic.co.th\nURL;TYPE=Digital Business Card:https://businesscard.digitalpicnic.co.th/n7s89p4\nURL;TYPE=Location:\nKEY:OPENPGP4FPR:\nUID:SMART vCARD-846557894\nURL;TYPE=Website:https://www.digitalpicnic.co.th\nURL;TYPE=Line:https://line.me/ti/p/XSTvZVwFDa\nURL;TYPE=Facebook:https://facebook.com/digitalpicnic.th\nURL;TYPE=Youtube:https://youtube.com/channel/UCCStnGYYkq0zY8kYuW3opQg\nEND:VCARD`
+            const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Sripairojthikoon;Nutisa;;;\nFN:Nutisa Sripairojthikoon\nORG:Digital Picnic Co., Ltd.\nCOMPANY:Digital Picnic Co., Ltd.\nTITLE:Co-Founder & Head of Software Engineer\nTEL;CELL;TYPE=mobile,VOICE:+66846557894\nEMAIL;TYPE=Email:nutisa@digitalpicnic.co.th\nURL;TYPE=Digital Business Card:https://businesscard.digitalpicnic.co.th/n7s89p4:\nURL;TYPE=Website:https://www.digitalpicnic.co.th\nURL;TYPE=Line:https://line.me/ti/p/XSTvZVwFDa\nURL;TYPE=Facebook:https://facebook.com/digitalpicnic.th\nURL;TYPE=Youtube:https://youtube.com/channel/UCCStnGYYkq0zY8kYuW3opQg\nEND:VCARD`
             const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
             
             await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
