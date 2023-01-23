@@ -57,8 +57,7 @@ export default function NFCPanel() {
         console.log('enter3')
         try {
             const ndef = new NDEFReader();
-            const vcard = 
-            `BEGIN:VCARD\n
+            const vcard = `BEGIN:VCARD\n
             VERSION:3.0\n
             N:Sripairojthikoon;Nutisa;;;\n
             FN:Nutisa Sripairojthikoon\n
@@ -82,7 +81,6 @@ export default function NFCPanel() {
             URL;TYPE=Line:https://line.me/ti/p/XSTvZVwFDa\n
             URL;TYPE=Facebook:https://facebook.com/digitalpicnic.th\n
             URL;TYPE=Youtube:https://youtube.com/channel/UCCStnGYYkq0zY8kYuW3opQg\n
-            NOTE;CHARSET=UTF-8:Digital Picnic is a group of “Creative Technologists,” specializing in transforming space into interactive digital art. We use the combination of art and technology to create the novel experience of playing. We spread the enjoyment into the museum, event, and learning center with projector mapping, mixed reality, and immersive experience.\n
             END:VCARD`
             const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
             
