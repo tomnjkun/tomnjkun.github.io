@@ -65,6 +65,7 @@ export default function NFCPanel() {
             setLog("vcard set")
             //let file = new File([blob], `test.vcf`,{type: "text/vcard"});
             //window.open();
+            //write
             await ndef.write({
                 records: [{ recordType: "url", data: "data:text/x-vcard;urlencoded," + vcard }],
             });
