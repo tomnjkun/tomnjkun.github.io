@@ -62,9 +62,10 @@ export default function NFCPanel() {
             let blob = new Blob([vcard],{type:'text/vcard'})
             //await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
             setLog("vcard set")
-            let link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.click();
+            let link = URL.createObjectURL(blob);
+            await ndef.write({
+                records: [{ recordType: "url", data: link }],
+            });
         }catch {
             console.log("Write failed :-( try again.");
             setLog("Write vcard failed :-( try again.")
