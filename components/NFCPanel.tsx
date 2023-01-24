@@ -54,29 +54,20 @@ export default function NFCPanel() {
 
     async function writeVcard (){
         console.log('enter3')
-        const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Sripairojthikoon;Nutisa;;;\nFN:Nutisa Sripairojthikoon\nORG:Digital Picnic Co., Ltd.\nCOMPANY:Digital Picnic Co., Ltd.\nTITLE:Co-Founder & Head of Software Engineer\nTEL;CELL;TYPE=mobile,VOICE:+66846557894\nEMAIL;TYPE=Email:nutisa@digitalpicnic.co.th\nURL;TYPE=Digital Business Card:https://businesscard.digitalpicnic.co.th/n7s89p4:\nURL;TYPE=Website:https://www.digitalpicnic.co.th\nURL;TYPE=Line:https://line.me/ti/p/XSTvZVwFDa\nURL;TYPE=Facebook:https://facebook.com/digitalpicnic.th\nURL;TYPE=Youtube:https://youtube.com/channel/UCCStnGYYkq0zY8kYuW3opQg\nEND:VCARD`
-        //const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
-        let blob = new Blob([vcard],{type:'text/vcard'})
-        //await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
-        setLog("vcard set")
-        let file = new File([blob], `test.vcf`,{type: "text/vcard"});
-        window.open("data:text/x-vcard;urlencoded," + vcard);
-        //let link =URL.createObjectURL(blob)
-        //console.log(blob)
 
         try {
             const ndef = new NDEFReader();
             //vcard
             const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Sripairojthikoon;Nutisa;;;\nFN:Nutisa Sripairojthikoon\nORG:Digital Picnic Co., Ltd.\nCOMPANY:Digital Picnic Co., Ltd.\nTITLE:Co-Founder & Head of Software Engineer\nTEL;CELL;TYPE=mobile,VOICE:+66846557894\nEMAIL;TYPE=Email:nutisa@digitalpicnic.co.th\nURL;TYPE=Digital Business Card:https://businesscard.digitalpicnic.co.th/n7s89p4:\nURL;TYPE=Website:https://www.digitalpicnic.co.th\nURL;TYPE=Line:https://line.me/ti/p/XSTvZVwFDa\nURL;TYPE=Facebook:https://facebook.com/digitalpicnic.th\nURL;TYPE=Youtube:https://youtube.com/channel/UCCStnGYYkq0zY8kYuW3opQg\nEND:VCARD`
             //const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
-            let blob = new Blob([vcard],{type:'text/vcard'})
+            //let blob = new Blob([vcard],{type:'text/vcard'})
             //await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
             setLog("vcard set")
-            let link = URL.createObjectURL(blob);
-            console.log(link)
-            /*await ndef.write({
-                records: [{ recordType: "url", data: link }],
-            });*/
+            //let file = new File([blob], `test.vcf`,{type: "text/vcard"});
+            //window.open();
+            await ndef.write({
+                records: [{ recordType: "url", data: "data:text/x-vcard;urlencoded," + vcard }],
+            });
         }catch {
             console.log("Write failed :-( try again.");
             setLog("Write vcard failed :-( try again.")
