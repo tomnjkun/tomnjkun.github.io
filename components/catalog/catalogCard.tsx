@@ -4,6 +4,7 @@ import Link from "next/link";
 export const CatalogCard = (props:any) =>{
 
   async function writeURL (){
+    console.log(window.location.href +'/'+ props.title )
     try {
         const ndef = new NDEFReader();
         await ndef.write({
