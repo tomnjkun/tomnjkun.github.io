@@ -54,19 +54,25 @@ export default function NFCPanel() {
 
     async function writeVcard (){
         console.log('enter3')
+        const vcardString = `BEGIN:VCARD\nVERSION:3.0\nN:Sripairojthikoon;Nutisa;;;\nFN:Nutisa Sripairojthikoon\nORG:Digital Picnic Co., Ltd.\nCOMPANY:Digital Picnic Co., Ltd.\nTITLE:Co-Founder & Head of Software Engineer\nTEL;CELL;TYPE=mobile,VOICE:+66846557894\nEND:VCARD`
+        let vcardBlob = new Blob([vcardString],{type:'text/vcard'})
+        const vcardUrl = URL.createObjectURL(vcardBlob);
+        //console.log(vcfUrl)
 
         try {
             const ndef = new NDEFReader();
             //vcard
-            const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Sripairojthikoon;Nutisa;;;\nFN:Nutisa Sripairojthikoon\nORG:Digital Picnic Co., Ltd.\nCOMPANY:Digital Picnic Co., Ltd.\nTITLE:Co-Founder & Head of Software Engineer\nTEL;CELL;TYPE=mobile,VOICE:+66846557894\nEND:VCARD`
+            //const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Sripairojthikoon;Nutisa;;;\nFN:Nutisa Sripairojthikoon\nORG:Digital Picnic Co., Ltd.\nCOMPANY:Digital Picnic Co., Ltd.\nTITLE:Co-Founder & Head of Software Engineer\nTEL;CELL;TYPE=mobile,VOICE:+66846557894\nEND:VCARD`
             //const vcardAsArrayBuffer = new TextEncoder().encode(vcard);
-            let blob = new Blob([vcard],{type:'text/vcard'})
-            const file = URL.createObjectURL(blob)
+            //let blob = new Blob([vcard],{type:'text/vcard'})
+            //let file = new File([blob], `test.vcf`,{type: "text/vcard"});
+            //const vcfUrl = URL.createObjectURL(file);
             //await ndef.write({records: [{recordType:"mime", mediaType:"text/vcard", data:vcardAsArrayBuffer}]});
+            const message = {
+                records: [{ recordType: "url", data: "https://www.youtube.com/watch?v=xdwUN9PV_kc&list=PLbJD0APnaN3LE_8MRKkDqwMPxbcbw-FMh&index=19" }],
+            };
             //write
-            await ndef.write({
-                records: [{ recordType: "url", mediaType:'nfc.com:vcard', data: file }],
-            });
+            ndef.write(message);
             setLog("vcard set")
         }catch {
             console.log("Write failed :-( try again.");

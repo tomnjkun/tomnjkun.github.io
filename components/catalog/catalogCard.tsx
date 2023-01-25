@@ -1,7 +1,22 @@
 import { Card, Row, Text,Button } from "@nextui-org/react";
 import Link from "next/link";
 
-export const CatalogCard = (props:any) =>(
+export const CatalogCard = (props:any) =>{
+
+  async function writeURL (){
+    try {
+        const ndef = new NDEFReader();
+        await ndef.write({
+            records: [{ recordType: "url", data: window.location.href + props.title }],
+        });
+    }catch {
+        console.log("Write failed :-( try again.");
+    }
+  }
+  console.log(props)
+  //<Link href={'catalogs/' + props.title}>
+
+  return(
     <Card isPressable>
     <Card.Body css={{ p: 0 }}>
       <Card.Image
@@ -13,15 +28,13 @@ export const CatalogCard = (props:any) =>(
       />
     </Card.Body>
     <Card.Footer css={{ justifyItems: "flex-start" }}>
-      
         <Row wrap="wrap" justify="space-between" align="center">
           <Text b>{props.title}</Text>
-          <Link href={'catalogs/' + props.title}>
-            <Button size="sm" shadow color="error">
+            <Button size="sm" shadow color="error" onPress={writeURL}>
               Learn more
             </Button>
-          </Link>
         </Row>
     </Card.Footer>
     </Card>
-)
+  )
+}
