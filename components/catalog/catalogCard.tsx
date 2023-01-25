@@ -7,7 +7,7 @@ export const CatalogCard = (props:any) =>{
     try {
         const ndef = new NDEFReader();
         await ndef.write({
-            records: [{ recordType: "url", data: window.location.href + props.title }],
+            records: [{ recordType: "url", data: window.location.href +'/'+ props.title }],
         });
     }catch {
         console.log("Write failed :-( try again.");
