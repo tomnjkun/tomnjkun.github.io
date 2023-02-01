@@ -97,6 +97,8 @@ export default function CatalogIndex() {
       const link = document.createElement("a");
       link.href = url;
       link.setAttribute("download", "blob.vcf");
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noreferrer");
       document.body.appendChild(link);
       link.click();
     }
