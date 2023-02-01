@@ -16,7 +16,7 @@ export default function CatalogIndex() {
     return (
       <>
         <div>
-            <h1>hello</h1>
+            <h1>VCF download</h1>
             <a download={file}>
               <Button>OPEN</Button>
             </a>
