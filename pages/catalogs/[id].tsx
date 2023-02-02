@@ -108,9 +108,7 @@ export default function CatalogIndex() {
         <div>
             <h1>VCF download</h1>
             <Button onClick={() => download(getVCFFile())}>OPEN</Button>
-            <Link href="./blob.vcf">
-              <Button>download</Button>
-            </Link>
+            <a href="./blob.vcf">download</a>
         </div>
       </>
     )
