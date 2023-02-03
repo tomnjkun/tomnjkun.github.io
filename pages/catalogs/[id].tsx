@@ -39,7 +39,7 @@ export default function CatalogIndex() {
       vCard.title = "Software Developer";
       vCard.url = "https://github.com/enesser";
       vCard.workUrl = "https://acme-corporation/enesser";
-      vCard.note = "Notes on Suppachai this is my bio";
+      vCard.note = "Notes on Suppachai";
   
       //set other vitals
       vCard.nickname = "Ton";
