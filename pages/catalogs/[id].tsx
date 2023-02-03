@@ -7,28 +7,30 @@ import axios from "axios";
 
 export default function CatalogIndex() {
     var vCard = vCardsJS();
-    const getVCFFile = async() => {
+
+    function getVCFFile () {
       //set basic properties shown before
       vCard.firstName = "Suppachai";
       vCard.lastName = "Booncharoen";
-      vCard.organization = "Digital Picnic";
-  
-      let image = await axios.get("https://scontent.fbkk12-4.fna.fbcdn.net/v/t39.30808-6/299509569_3258197811112956_3495300142600789949_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHMyIHb92byRjCPFVLZnWv13XeJFYDtjs_dd4kVgO2OzwR9q0enw3cTYg46DPkLsbJxUkaw4njU2FGGLefajG_H&_nc_ohc=CJLmzfPaULcAX_qo_hZ&_nc_ht=scontent.fbkk12-4.fna&oh=00_AfAwT8A4R4bUv6L36SaHlp22zNhIvSv_b-_Esx2KHTn2wA&oe=63E1BE48",{responseType: 'arraybuffer'});
-      let imageBase64 = Buffer.from(image.data).toString('base64');
-      vCard.photo.embedFromString(imageBase64,'image/jpeg')
-  
+      vCard.uid = "69531f4a-c34d-4a1e-8922-bd38a9476a53";
+      vCard.organization = "ACME Corporation";
+
+      vCard.photo.attachFromUrl('https://avatars2.githubusercontent.com/u/5659221?v=3&s=460', 'JPEG');
       //or embed image
       //vCard.photo.attachFromUrl("/path/to/file.jpeg");
   
       vCard.workPhone = "0634096602";
-      vCard.birthday = new Date(1999, 9, 4);
+      vCard.birthday = new Date(1985, 0, 1);
       vCard.title = "Software Developer";
+      vCard.url = "https://github.com/enesser";
+      vCard.workUrl = "https://acme-corporation/enesser";
       vCard.note = "Notes on Suppachai this is my bio";
   
       //set other vitals
       vCard.nickname = "Ton";
       vCard.namePrefix = "Mr.";
       vCard.gender = "M";
+      vCard.anniversary = new Date(2004, 9, 4);
       vCard.role = "Software Development";
   
       // //set other phone numbers
