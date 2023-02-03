@@ -6,19 +6,34 @@ import vCardsJS from "vcards-js";
 import axios from "axios";
 
 export default function CatalogIndex() {
+    const [base64,setBase64] = useState<any>([])
     var vCard = vCardsJS();
+    useEffect(() => {
+      // Update the document title using the browser API
+      loadImage();
+    });
 
-    function getVCFFile () {
+    async function loadImage(){
+      const imageUrl = "https://scontent.fbkk12-4.fna.fbcdn.net/v/t39.30808-6/299509569_3258197811112956_3495300142600789949_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHMyIHb92byRjCPFVLZnWv13XeJFYDtjs_dd4kVgO2OzwR9q0enw3cTYg46DPkLsbJxUkaw4njU2FGGLefajG_H&_nc_ohc=CJLmzfPaULcAX_qo_hZ&_nc_ht=scontent.fbkk12-4.fna&oh=00_AfAwT8A4R4bUv6L36SaHlp22zNhIvSv_b-_Esx2KHTn2wA&oe=63E1BE48";
+      const image = await axios.get(imageUrl,{responseType: 'arraybuffer'});
+      setBase64(Buffer.from(image.data).toString('base64'));
+      console.log(base64)
+    }
+    
+
+    async function getVCFFile () {
       //set basic properties shown before
       vCard.firstName = "Suppachai";
       vCard.lastName = "Booncharoen";
       vCard.uid = "69531f4a-c34d-4a1e-8922-bd38a9476a53";
       vCard.organization = "ACME Corporation";
-
-      vCard.photo.attachFromUrl('https://avatars2.githubusercontent.com/u/5659221?v=3&s=460', 'JPEG');
+      vCard.photo.embedFromString(base64,"image/png")
+      //vCard.photo.attachFromUrl('https://avatars2.githubusercontent.com/u/5659221?v=3&s=460', 'JPEG');
+      //let imageBase64 = Buffer.from(image.data).toString('base64');
+      //console.log(imageBase64)
       //or embed image
       //vCard.photo.attachFromUrl("/path/to/file.jpeg");
-  
+
       vCard.workPhone = "0634096602";
       vCard.birthday = new Date(1985, 0, 1);
       vCard.title = "Software Developer";
@@ -98,10 +113,10 @@ export default function CatalogIndex() {
       link.click();
     }
 
-    function downloadVcf(vCard:any) {
-
+    async function downloadVcf(vCard:any) {
+      console.log(await vCard)
       // build data url
-      var url = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vCard);
+      var url = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(await vCard);
   
       // ask the browser to download it
       document.location.href = url;
@@ -111,7 +126,7 @@ export default function CatalogIndex() {
       <>
         <div>
             <h1>VCF download</h1>
-            <Button onClick={() => downloadVcf(getVCFFile())}>OPEN</Button>
+            <Button onPress={() => downloadVcf(getVCFFile())}>OPEN</Button>
         </div>
       </>
     )
