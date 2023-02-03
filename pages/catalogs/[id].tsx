@@ -103,12 +103,20 @@ export default function CatalogIndex() {
       link.click();
     }
 
+    function downloadVcf(vCard:any) {
+
+      // build data url
+      var url = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vCard);
+  
+      // ask the browser to download it
+      document.location.href = url;
+  }
+
     return (
       <>
         <div>
             <h1>VCF download</h1>
-            <Button onClick={() => download(getVCFFile())}>OPEN</Button>
-            <a href="./blob.vcf">download</a>
+            <Button onClick={() => downloadVcf(getVCFFile())}>OPEN</Button>
         </div>
       </>
     )
