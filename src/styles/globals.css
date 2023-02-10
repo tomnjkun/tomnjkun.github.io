@@ -9,7 +9,7 @@
 
 html,
 body {
-  background-image: url('../assets/covermark.jpeg');
+  background-image: url(../assets/covermark.jpeg);
   max-width: 100vw;
   overflow-x: hidden;
   height: 100%;

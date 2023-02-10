@@ -20,7 +20,7 @@ const RegisterResult = ({ children }:any) => {
               },
         }}>
             <Grid.Container justify="center" alignItems="center">
-                <Card css={{ mw: "590px",bg:'#FFFFFF',borderRadius: 0 }} variant="flat">
+                <Card css={{ mw: "590px",bg:'#FFFFFF',borderRadius: 0 }}>
                     <Card.Body>
                         <Grid xs={12} sm={12} md={12} justify="center">
                             {children[0]}
