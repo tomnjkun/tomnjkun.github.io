@@ -1,4 +1,4 @@
-import {Container,Row,Col,Input,Grid, Card, Text,Checkbox, Spacer, Button} from "@nextui-org/react";
+import {Container,Row,Col,Input,Grid, Card, Text,Checkbox, Spacer, Button,Dropdown} from "@nextui-org/react";
 import { buttonStyle } from "./common";
 import { LabelStyle } from "./common";
 import { LabelCheckboxStyle } from "./common";
@@ -35,44 +35,83 @@ export const Form = () =>{
                     <Grid.Container  gap={2} justify="center">
                         <Grid xs={12} sm={6} md={6}>
                             <Col>
+                                <Row align="center" >
                                 <Text span css={LabelStyle}>ชื่อ</Text>
-                                <Input shadow={false} bordered fullWidth placeholder="Guillermo Rauch" />
+                                </Row>
+                                <Row align="center" >
+                                <select name="cars" className="SelectStyle" id="mod-select">
+                                    <option value="volvo">นาย</option>
+                                </select>
+                                <input placeholder="ชื่อ" className="InputStyle" id="mod-input"/>
+                                </Row>
                             </Col>
                         </Grid>
                         <Grid xs={12} sm={6} md={6}>
                             <Col>
-                                <Text span css={LabelStyle}>นามสกุล</Text>
-                                <Input shadow={false} bordered fullWidth placeholder="Guillermo Rauch" />
+                                <Row>
+                                    <Text span css={LabelStyle}>นามสกุล</Text>
+                                </Row>
+                                <Row align="center" >
+                                    <input placeholder="นามสกุล" className="InputStyle"/>
+                                </Row>
                             </Col>
                         </Grid>
                         <Grid xs={12} sm={6} md={6}>
                             <Col>
-                                <Text span css={LabelStyle}>เบอร์มือถือ</Text>
-                                <Input shadow={false} bordered fullWidth placeholder="Guillermo Rauch" />
+                                <Row>
+                                    <Text span css={LabelStyle}>เบอร์มือถือ</Text>
+                                </Row>
+                                <Row align="center" >
+                                    <input placeholder="xxx-xxxxxxx" className="InputStyle"/>
+                                </Row>
                             </Col>
                         </Grid>
                         <Grid xs={12} sm={6} md={6}>
                             <Col>
-                                <Text span css={LabelStyle}>เลือกสาชาที่สะดวกเข้ารับบริการ</Text>
-                                <Input shadow={false} bordered fullWidth placeholder="Guillermo Rauch" />
+                                <Row>
+                                    <Text span css={LabelStyle}>เลือกสาชาที่สะดวกเข้ารับบริการ</Text>
+                                </Row>
+                                <Row>
+                                <select name="cars" className="SelectStyle" >
+                                    <option value="volvo">สาขา</option>
+                                </select>
+                                </Row>
                             </Col>
                         </Grid>
                         <Grid xs={12} sm={6} md={6}>
                             <Col>
-                                <Text span css={LabelStyle}>เลือกวันที่สะดวกเข้ารับบริการ</Text>
-                                <Input shadow={false} bordered fullWidth placeholder="Guillermo Rauch" />
+                                <Row>
+                                    <Text span css={LabelStyle}>เลือกวันที่สะดวกเข้ารับบริการ</Text>
+                                </Row>
+                                <Row>
+                                <select name="cars" className="SelectStyle" >
+                                    <option value="volvo"></option>
+                                </select>
+                                </Row>
                             </Col>
                         </Grid>
                         <Grid xs={12} sm={6} md={6}>
                             <Col>
-                                <Text span css={LabelStyle}>เลือกเวลาเพื่อเข้ารับบริการ</Text>
-                                <Input shadow={false} bordered fullWidth placeholder="Guillermo Rauch" />
+                                <Row>
+                                    <Text span css={LabelStyle}>เลือกเวลาเพื่อเข้ารับบริการ</Text>
+                                </Row>
+                                <Row>
+                                    <select name="cars" className="SelectStyle" >
+                                        <option value="volvo"></option>
+                                    </select>
+                                </Row>
                             </Col>
                         </Grid>
                         <Grid xs={12} sm={6} md={6}>
                             <Col>
-                                <Text span css={LabelStyle}>เลือกระดับการปกปิดของรองพื้นที่ต้องการ</Text>
-                                <Input shadow={false} bordered fullWidth placeholder="Guillermo Rauch"/>
+                                <Row>
+                                    <Text span css={LabelStyle}>เลือกระดับการปกปิดของรองพื้นที่ต้องการ</Text>
+                                </Row>
+                                <Row>
+                                <select name="cars" className="SelectStyle" >
+                                        <option value="volvo"></option>
+                                </select>
+                                </Row>
                             </Col>
                         </Grid>
                         <Grid xs={12} sm={6} md={6}>
@@ -91,7 +130,7 @@ export const Form = () =>{
                     <Grid.Container gap={2}>
                         <Grid xs={12} sm={12} md={12} justify='center'>
                             <Checkbox color='default' css={{display:'flex',alignItems:'flex-start','@sm':{margin:'3px 10px'},'@md': {margin:'5px 10px'}}}></Checkbox>
-                            <Text span css={LabelCheckboxStyle}>กรุณายอมรับเงื่อนไขของนโยบายความเป็นส่วนตัว <a><u>ศึกษาเพิ่มเติมได้ที่นี่</u></a></Text>
+                            <Text span css={LabelCheckboxStyle}>กรุณายอมรับเงื่อนไขของนโยบายความเป็นส่วนตัว <a style={LabelCheckboxStyle}><u>ศึกษาเพิ่มเติมได้ที่นี่</u></a></Text>
                         </Grid>
                         <Grid xs={12} sm={12} md={12} justify='center'>
                             <Button css={buttonStyle}>ลงทะเบียน</Button>
@@ -103,6 +142,7 @@ export const Form = () =>{
                 </Row>
                 </Card.Body>
             </Card>
+            
         </Container>
     );
 }

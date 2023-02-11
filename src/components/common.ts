@@ -2,10 +2,9 @@ export const buttonStyle = {
     color:'#5C442B',
     fontWeight: '500',
     bg: "linear-gradient(106.78deg, #BB8C2E 4.15%, #EEE486 52.97%, #BB8C2E 92.61%);",
-    fontSize: '14px',height:'26px',width:'0px',
+    fontSize: '14px',height:'38px',minWidth:'155px',width:'155px',
     p:0,
-    m:0,
-    '@xs':{fontSize:'14px',height:'26px',width:'107px'},
+    '@xs':{fontSize:'14px',height:'38px',width:'155px',minWidth:'155px'},
     '@sm':{fontSize:'20px',height:'50px',width:'203px'},
     '@md':{fontSize:'20px',height:'50px',width:'203px'},
     '@lg':{fontSize:'20px',height:'50px',width:'203px'}
@@ -23,7 +22,6 @@ export const LabelStyle ={
     '@lg': {
         fontSize:'20px',
     }
-    
 }
 
 export const LabelCheckboxStyle ={

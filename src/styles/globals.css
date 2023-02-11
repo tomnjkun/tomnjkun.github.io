@@ -2,38 +2,16 @@
 
 * {
   font-family: 'Kanit';
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
 html,
 body {
-  background-image: url(../assets/covermark.jpeg);
+  background-image: url('https://campaign.covermark.co.th/public/images/covermark-background.png');
   max-width: 100vw;
   overflow-x: hidden;
   height: 100%;
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
 
 .Navbar {
@@ -47,4 +25,64 @@ a {
 .Navbar a {
   margin-left: 12px;
   color: white;
+  font-weight: 600;
+}
+
+.InputStyle{
+  box-shadow: 0 0 0 2px #5C442B;
+  border-radius: 0.5em;
+  height: 40px;
+  width: 100% ;
+  box-sizing:border-box;
+  border: none;
+  padding:0px 12px;
+  margin:6px 0px;
+}
+
+.SelectStyle{
+  box-shadow: 0 0 0 2px #5C442B;
+  border-radius: 0.5em;
+  height: 40px;
+  width: 100% ;
+  box-sizing:border-box;
+  border: none;
+  padding:0px 0px 0px 10px;
+  margin:6px 0px;
+    
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, transparent, transparent);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+  outline: 0;
+}
+
+#mod-select{
+  width: 40%;
+  border-radius: 0.5em 0em 0em 0.5em;
+}
+
+#mod-input{
+  width: 100%;
+  border-radius: 0em 0.5em 0.5em 0em;
+}
+
+@media only screen and (max-width: 960px) {
+  .Navbar{
+    padding: 6px;
+  }
 }

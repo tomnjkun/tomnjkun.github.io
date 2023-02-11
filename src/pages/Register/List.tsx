@@ -35,7 +35,6 @@ const List:React.FC<Props> = ({datas}) => {
       <>
         <main>
           <Layout>
-            <Navbar />
             <ResultLayout>
               <Container>
                 <Row justify="center">

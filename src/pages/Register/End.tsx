@@ -10,7 +10,6 @@ export default function Failed() {
       <>
         <main>
           <Layout>
-            <Navbar />
             <ResultLayout>
                 <Container css={{
                   margin:'46px 0px 40px 0px',

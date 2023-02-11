@@ -20,7 +20,6 @@ export default function Success() {
       <>
         <main>
           <Layout>
-            <Navbar />
             <ResultLayout>
               <Container>
                 <Row justify="center" css={{margin:'16px 0px 15px'}}>
