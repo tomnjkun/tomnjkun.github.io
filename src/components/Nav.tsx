@@ -8,8 +8,7 @@ export default function Nav() {
     <>
     <div className="Navbar">
       <Image
-          width={47}
-          height={5}
+          className="ImageNavber"
           src={coverMark}
           alt="Default Image"
       />
