@@ -1,4 +1,7 @@
 import {Container,Row,Col,Input,Grid, Card, Text,Checkbox, Spacer, Button,Dropdown} from "@nextui-org/react";
+import { stat } from "fs";
+import { useState } from "react";
+import { useEffect } from "react";
 import { buttonStyle } from "./common";
 import { LabelStyle } from "./common";
 import { LabelCheckboxStyle } from "./common";
@@ -6,6 +9,136 @@ import { TopicText } from "./common";
 import { SubTopicText } from "./common";
 
 export const Form = () =>{
+    const [state,setState] = useState({
+        username : '',
+        surname : '',
+        phone : '',
+        department:'',
+        date:'',
+        time:'',
+        level:'',
+        errors : {
+          name : '',
+          surname : '',
+          phone : '',
+          department:'',
+          date:'',
+          time:'',
+          level:'',
+        } 
+    });
+
+    const [samples,setSamples] = useState<String>('');
+
+    const handleChange = (event:any) =>{
+        //event.preventDefault();
+        const { name, value } = event.target;
+        let errors = state.errors;
+        switch (name) {
+            case 'name':
+               errors.name = (value.length <= 0 || value == undefined || value == null) ? '*กรุณาใส่ชื่อจริง': '';
+               console.log(value.length)
+               setState(prevState =>({...prevState,
+                    errors:{
+                        ...prevState.errors,username: errors.name,
+                    }})
+                );
+               break;
+            case 'surname':
+                errors.surname = (value.length <= 0 || value == undefined || value == null) ? '*กรุณาใส่นามสกุล': '';
+                console.log(value.length)
+                setState(prevState =>({...prevState,
+                    errors:{
+                        ...prevState.errors,username: errors.surname,
+                    }})
+                );
+               break;
+            case 'phone':
+                errors.phone = (value.length <= 0) ? '*กรุณากรอกเบอร์โทรศัพท์มือถือทั้ง 10 หลัก': '';
+                console.log(value.length)
+                setState(prevState =>({...prevState,
+                    errors:{
+                        ...prevState.errors,username: errors.phone,
+                    }})
+                );
+               break;
+            case 'department':
+                errors.phone = (value == '') ? '*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ': '';
+                console.log(value)
+                setState(prevState =>({...prevState,
+                    errors:{
+                        ...prevState.errors,username: errors.department,
+                    }})
+                );
+               break;
+            case 'date':
+                errors.phone = (value.length <= 0) ? '*กรุณาเลือกวันที่ที่คุณต้องการเข้ารับบริการ': '';
+                console.log(value.length)
+                setState(prevState =>({...prevState,
+                    errors:{
+                        ...prevState.errors,username: errors.date,
+                    }})
+                );
+               break;
+            case 'time':
+                errors.phone = (value.length <= 0) ? '*กรุณาเลือกเวลาที่คุณต้องการเข้ารับบริการ': '';
+                console.log(value.length)
+                setState(prevState =>({...prevState,
+                    errors:{
+                        ...prevState.errors,username: errors.time,
+                    }})
+                );
+               break;
+            case 'level':
+                errors.phone = (value.length <= 0) ? '*กรุณาเลือกระดับการปกปิด': '';
+                console.log(value.length)
+                setState(prevState =>({...prevState,
+                    errors:{
+                        ...prevState.errors,username: errors.level,
+                    }})
+                );
+               break;
+            default:
+              break;
+          }
+        //setState({[name]: value});
+    }
+
+    const handleSubmit = () => {
+        //event.preventDefault();
+        for (const [key, val] of Object.entries(state)) {
+            console.log(key)
+            console.log(val)
+            let errors = state.errors;
+            switch (key) {
+                case 'name':
+                errors.name = (val == undefined || val == null) ? '*กรุณาใส่ชื่อจริง': '';
+                setState(prevState =>({...prevState,
+                        errors:{
+                            ...prevState.errors,username: errors.name,
+                        }})
+                    );
+                break;
+                    errors.phone = (value.length <= 0) ? '*กรุณาเลือกระดับการปกปิด': '';
+                    console.log(value.length)
+                    setState(prevState =>({...prevState,
+                        errors:{
+                            ...prevState.errors,username: errors.level,
+                        }})
+                    );
+                break;
+                default:
+                break;
+            }
+        }
+     }
+
+    const sample = (event:any) =>{
+        event.preventDefault();
+        const { surname, value } = event.target;
+        setSamples(value);
+    }
+
     return(
         <Container md >
             <Card css={{ $$cardColor: 'white',borderRadius:'$0'}}>
@@ -42,7 +175,10 @@ export const Form = () =>{
                                 <select name="cars" className="SelectStyle" id="mod-select">
                                     <option value="volvo">นาย</option>
                                 </select>
-                                <input placeholder="ชื่อ" className="InputStyle" id="mod-input"/>
+                                <input placeholder="ชื่อ" className="InputStyle" id="mod-input" name='name' onChange={handleChange}/>
+                                </Row>
+                                <Row css={{position:'absolute'}}>
+                                    <span style={{color: "red"}}>{state.errors.name}</span>
                                 </Row>
                             </Col>
                         </Grid>
@@ -52,7 +188,10 @@ export const Form = () =>{
                                     <Text span css={LabelStyle}>นามสกุล</Text>
                                 </Row>
                                 <Row align="center" >
-                                    <input placeholder="นามสกุล" className="InputStyle"/>
+                                    <input placeholder="นามสกุล" className="InputStyle" required name='surname' onChange={handleChange}/>
+                                </Row>
+                                <Row css={{position:'absolute'}}>
+                                    <span style={{color: "red"}}>{state.errors.surname}</span>
                                 </Row>
                             </Col>
                         </Grid>
@@ -62,7 +201,10 @@ export const Form = () =>{
                                     <Text span css={LabelStyle}>เบอร์มือถือ</Text>
                                 </Row>
                                 <Row align="center" >
-                                    <input placeholder="xxx-xxxxxxx" className="InputStyle"/>
+                                    <input placeholder="xxx-xxxxxxx" className="InputStyle" name='phone' onChange={handleChange} />
+                                </Row>
+                                <Row css={{position:'absolute'}}>
+                                    <span style={{color: "red"}}>{state.errors.phone}</span>
                                 </Row>
                             </Col>
                         </Grid>
@@ -72,9 +214,12 @@ export const Form = () =>{
                                     <Text span css={LabelStyle}>เลือกสาชาที่สะดวกเข้ารับบริการ</Text>
                                 </Row>
                                 <Row>
-                                <select name="cars" className="SelectStyle" >
-                                    <option value="volvo">สาขา</option>
+                                <select name="department" className="SelectStyle" onChange={handleChange}>
+                                    <option value="" disabled selected></option>
                                 </select>
+                                </Row>
+                                <Row css={{position:'absolute'}}>
+                                    <span style={{color: "red"}}>{state.errors.department}</span>
                                 </Row>
                             </Col>
                         </Grid>
@@ -88,6 +233,9 @@ export const Form = () =>{
                                     <option value="volvo"></option>
                                 </select>
                                 </Row>
+                                <Row css={{position:'absolute'}}>
+                                    <span style={{color: "red"}}>{state.errors.date}</span>
+                                </Row>
                             </Col>
                         </Grid>
                         <Grid xs={12} sm={6} md={6}>
@@ -100,6 +248,9 @@ export const Form = () =>{
                                         <option value="volvo"></option>
                                     </select>
                                 </Row>
+                                <Row css={{position:'absolute'}}>
+                                    <span style={{color: "red"}}>{state.errors.time}</span>
+                                </Row>
                             </Col>
                         </Grid>
                         <Grid xs={12} sm={6} md={6}>
@@ -111,6 +262,9 @@ export const Form = () =>{
                                 <select name="cars" className="SelectStyle" >
                                         <option value="volvo"></option>
                                 </select>
+                                </Row>
+                                <Row css={{position:'absolute'}}>
+                                    <span style={{color: "red"}}>{state.errors.level}</span>
                                 </Row>
                             </Col>
                         </Grid>
@@ -133,7 +287,7 @@ export const Form = () =>{
                             <Text span css={LabelCheckboxStyle}>กรุณายอมรับเงื่อนไขของนโยบายความเป็นส่วนตัว <a style={LabelCheckboxStyle}><u>ศึกษาเพิ่มเติมได้ที่นี่</u></a></Text>
                         </Grid>
                         <Grid xs={12} sm={12} md={12} justify='center'>
-                            <Button css={buttonStyle}>ลงทะเบียน</Button>
+                            <Button css={buttonStyle} onPress={handleSubmit} >ลงทะเบียน</Button>
                         </Grid>
                         <Grid xs={12} sm={12} md={12} justify='center'>
                             <Text span css={LabelStyle}>ทางบริษัทขอสงวนลิขสิทธิ์ในการเปลี่ยนแปลงเงื่อนไข โดยไม่ต้องแจ้งให้ทราบล่วงหน้า</Text>
