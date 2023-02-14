@@ -243,9 +243,8 @@ export const Form = () =>{
                                     <Text span css={LabelStyle}>เลือกวันที่สะดวกเข้ารับบริการ</Text>
                                 </Row>
                                 <Row>
-                                    <input type="date" id="start" name="trip-start"
-                                    className="SelectStyle"
-                                    min="2018-01-01" max="2018-12-31" />
+                                    <input type="date" className="CalendarStyle" name="date"
+                                    value="2023-01-01" min="2018-01-01" max="2023-12-31" />
                                 </Row>
                                 <Row css={{position:'absolute'}}>
                                     <span style={{color: "red"}}>{state.errors.date}</span>
