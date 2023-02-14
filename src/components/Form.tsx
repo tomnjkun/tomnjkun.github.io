@@ -119,14 +119,6 @@ export const Form = () =>{
                         }})
                     );
                 break;
-                    errors.phone = (value.length <= 0) ? '*กรุณาเลือกระดับการปกปิด': '';
-                    console.log(value.length)
-                    setState(prevState =>({...prevState,
-                        errors:{
-                            ...prevState.errors,username: errors.level,
-                        }})
-                    );
-                break;
                 default:
                 break;
             }
