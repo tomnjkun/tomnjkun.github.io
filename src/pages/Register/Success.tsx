@@ -83,7 +83,7 @@ export default function Success() {
                       </Container>
                   </Card.Body>
                   <Card.Footer css={{padding:'0'}}>
-                      <Container>
+                      <Container css={{padding:'0px 16px'}}>
                           <Row justify="center">
                               <Text span css={{textAlign:'center',margin:'28px 0px 14px 0px',color:'#6D6D6D',
                               fontSize:'12px',

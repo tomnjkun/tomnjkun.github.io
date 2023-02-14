@@ -33,6 +33,7 @@ export const Form = () =>{
     const handleChange = (event:any) =>{
         //event.preventDefault();
         const { name, value } = event.target;
+        console.log(value)
         let errors = state.errors;
         switch (name) {
             case 'name':
@@ -63,7 +64,7 @@ export const Form = () =>{
                 );
                break;
             case 'department':
-                errors.phone = (value == '') ? '*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ': '';
+                errors.phone = (value.length <= 0) ? '*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ': '';
                 console.log(value)
                 setState(prevState =>({...prevState,
                     errors:{
@@ -91,34 +92,47 @@ export const Form = () =>{
                break;
             case 'level':
                 errors.phone = (value.length <= 0) ? '*กรุณาเลือกระดับการปกปิด': '';
-                console.log(value.length)
-                setState(prevState =>({...prevState,
-                    errors:{
-                        ...prevState.errors,username: errors.level,
-                    }})
-                );
-               break;
+                setState(prevState =>({...prevState,errors:{...prevState.errors,username: errors.level,}}));
+                break;
             default:
               break;
-          }
+        }
         //setState({[name]: value});
     }
 
     const handleSubmit = () => {
         //event.preventDefault();
-        for (const [key, val] of Object.entries(state)) {
-            console.log(key)
-            console.log(val)
+        for (const [key, val] of Object.entries(state.errors)) {
             let errors = state.errors;
             switch (key) {
                 case 'name':
-                errors.name = (val == undefined || val == null) ? '*กรุณาใส่ชื่อจริง': '';
-                setState(prevState =>({...prevState,
-                        errors:{
-                            ...prevState.errors,username: errors.name,
-                        }})
-                    );
-                break;
+                    errors.name = (val == undefined || val == null || val=='' || val=='*กรุณาใส่ชื่อจริง') ? '*กรุณาใส่ชื่อจริง': '';
+                    setState(prevState =>({...prevState,errors:{...prevState.errors,name: errors.name,}}));
+                    break;
+                case 'surname':
+                    errors.surname = (val == undefined || val == null || val=='' || val=='*กรุณาใส่นามสกุล') ? '*กรุณาใส่นามสกุล': '';
+                    setState(prevState =>({...prevState,errors:{...prevState.errors,surname: errors.surname,}}));
+                    break;
+                case 'phone':
+                    errors.phone = (val == undefined || val == null || val=='' || val=='*กรุณากรอกเบอร์โทรศัพท์มือถือทั้ง 10 หลัก') ? '*กรุณากรอกเบอร์โทรศัพท์มือถือทั้ง 10 หลัก': '';
+                    setState(prevState =>({...prevState,errors:{...prevState.errors,phone: errors.phone,}}));
+                    break;
+                case 'department':
+                    errors.department = (val == undefined || val == null || val=='' || val=='*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ') ? '*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ': '';
+                    setState(prevState =>({...prevState,errors:{...prevState.errors,department: errors.department,}}));
+                    break;
+                case 'date':
+                    errors.date = (val == undefined || val == null || val=='' || val=='*กรุณาเลือกวันที่ที่คุณต้องการเข้ารับบริการ') ? '*กรุณาเลือกวันที่ที่คุณต้องการเข้ารับบริการ': '';
+                    setState(prevState =>({...prevState,errors:{...prevState.errors,date: errors.date,}}));
+                    break;
+                case 'time':
+                    errors.time = (val == undefined || val == null || val=='' || val=='*กรุณาเลือกเวลาที่คุณต้องการเข้ารับบริการ') ? '*กรุณาเลือกเวลาที่คุณต้องการเข้ารับบริการ': '';
+                    setState(prevState =>({...prevState,errors:{...prevState.errors,time: errors.time,}}));
+                    break;
+                case 'level':
+                    errors.level = (val == undefined || val == null || val=='' || val=='*กรุณาเลือกระดับการปกปิด') ? '*กรุณาเลือกระดับการปกปิด': '';
+                    setState(prevState =>({...prevState,errors:{...prevState.errors,level: errors.level,}}));
+                    break;
                 default:
                 break;
             }
@@ -158,7 +172,7 @@ export const Form = () =>{
                       },
                 }}>
                     <Grid.Container  gap={2} justify="center">
-                        <Grid xs={12} sm={6} md={6}>
+                        <Grid xs={12} sm={6} md={6} css={{padding:'12px 12px 16px'}}>
                             <Col>
                                 <Row align="center" >
                                 <Text span css={LabelStyle}>ชื่อ</Text>
@@ -167,14 +181,14 @@ export const Form = () =>{
                                 <select name="cars" className="SelectStyle" id="mod-select">
                                     <option value="volvo">นาย</option>
                                 </select>
-                                <input placeholder="ชื่อ" className="InputStyle" id="mod-input" name='name' onChange={handleChange}/>
+                                <input placeholder="ชื่อ" className="InputStyle" id="mod-input" name='name' onChange={handleChange} />
                                 </Row>
                                 <Row css={{position:'absolute'}}>
                                     <span style={{color: "red"}}>{state.errors.name}</span>
                                 </Row>
                             </Col>
                         </Grid>
-                        <Grid xs={12} sm={6} md={6}>
+                        <Grid xs={12} sm={6} md={6} css={{padding:'12px 12px 16px'}}>
                             <Col>
                                 <Row>
                                     <Text span css={LabelStyle}>นามสกุล</Text>
@@ -187,7 +201,7 @@ export const Form = () =>{
                                 </Row>
                             </Col>
                         </Grid>
-                        <Grid xs={12} sm={6} md={6}>
+                        <Grid xs={12} sm={6} md={6} css={{padding:'16px 12px 16px'}}>
                             <Col>
                                 <Row>
                                     <Text span css={LabelStyle}>เบอร์มือถือ</Text>
@@ -200,7 +214,7 @@ export const Form = () =>{
                                 </Row>
                             </Col>
                         </Grid>
-                        <Grid xs={12} sm={6} md={6}>
+                        <Grid xs={12} sm={6} md={6} css={{padding:'16px 12px 16px'}}>
                             <Col>
                                 <Row>
                                     <Text span css={LabelStyle}>เลือกสาชาที่สะดวกเข้ารับบริการ</Text>
@@ -208,6 +222,14 @@ export const Form = () =>{
                                 <Row>
                                 <select name="department" className="SelectStyle" onChange={handleChange}>
                                     <option value="" disabled selected></option>
+                                    <option value="">เซ็นทรัลบางนา ชั้น 1</option>
+                                    <option value="">เซ็นทรัลพระราม2 ชั้น 1</option>
+                                    <option value="">เซ็นทรัลเมกาบางนา ชั้น 1</option>
+                                    <option value="">เซ็นทรัลปิ่นเกล้า ชั้น 1</option>
+                                    <option value="">เซ็นทรัลลาดพร้าว ชั้น 1</option>
+                                    <option value="">เซ็นทรัลเวสต์เกต ชั้น 1</option>
+                                    <option value="">สยามพารากอน ชั้น M</option>
+                                    <option value="">เดอะมอลล์งามวงศ์วาน ชั้น 1</option>
                                 </select>
                                 </Row>
                                 <Row css={{position:'absolute'}}>
@@ -215,29 +237,36 @@ export const Form = () =>{
                                 </Row>
                             </Col>
                         </Grid>
-                        <Grid xs={12} sm={6} md={6}>
+                        <Grid xs={12} sm={6} md={6} css={{padding:'16px 12px 16px'}}>
                             <Col>
                                 <Row>
                                     <Text span css={LabelStyle}>เลือกวันที่สะดวกเข้ารับบริการ</Text>
                                 </Row>
                                 <Row>
-                                <select name="cars" className="SelectStyle" >
-                                    <option value="volvo"></option>
-                                </select>
+                                    <input type="date" id="start" name="trip-start"
+                                    className="SelectStyle"
+                                    min="2018-01-01" max="2018-12-31" />
                                 </Row>
                                 <Row css={{position:'absolute'}}>
                                     <span style={{color: "red"}}>{state.errors.date}</span>
                                 </Row>
                             </Col>
                         </Grid>
-                        <Grid xs={12} sm={6} md={6}>
+                        <Grid xs={12} sm={6} md={6} css={{padding:'16px 12px 16px'}}>
                             <Col>
                                 <Row>
                                     <Text span css={LabelStyle}>เลือกเวลาเพื่อเข้ารับบริการ</Text>
                                 </Row>
                                 <Row>
                                     <select name="cars" className="SelectStyle" >
-                                        <option value="volvo"></option>
+                                        <option value="" disabled selected></option>
+                                        <option value="round1">12.00 -12.30</option>
+                                        <option value="round2">13.00 -13.30</option>
+                                        <option value="round3">15.30 -16.00</option>
+                                        <option value="round4">16.30 -17.00</option>
+                                        <option value="round5">17.30 -18.00</option>
+                                        <option value="round6">18.30 -19.00</option>
+                                        <option value="round7">19.30 - 20.00</option>
                                     </select>
                                 </Row>
                                 <Row css={{position:'absolute'}}>
@@ -245,14 +274,18 @@ export const Form = () =>{
                                 </Row>
                             </Col>
                         </Grid>
-                        <Grid xs={12} sm={6} md={6}>
+                        <Grid xs={12} sm={6} md={6} css={{padding:'16px 12px 16px'}}>
                             <Col>
                                 <Row>
                                     <Text span css={LabelStyle}>เลือกระดับการปกปิดของรองพื้นที่ต้องการ</Text>
                                 </Row>
                                 <Row>
                                 <select name="cars" className="SelectStyle" >
-                                        <option value="volvo"></option>
+                                        <option value="" disabled selected></option>
+                                        <option value="round1">ด้านซ้าย</option>
+                                        <option value="round2">ด้านขวา</option>
+                                        <option value="round3">ด้านหน้า</option>
+                                        <option value="round4">ด้านหลัง</option>
                                 </select>
                                 </Row>
                                 <Row css={{position:'absolute'}}>
