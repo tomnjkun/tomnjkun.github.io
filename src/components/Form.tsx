@@ -155,7 +155,7 @@ export const Form = () =>{
 
     return(
         <Container md >
-            <Card css={{ $$cardColor: 'white',borderRadius:'$0'}}>
+            <Card css={{ $$cardColor: 'white',borderRadius:'$0',overflow:'hidden'}}>
                 <Card.Body>
                 <Row justify="center" align="center">
                     <Card css={{ mw: "677px", bg: '#9B6F42',borderRadius:'$0'}} variant="flat">
