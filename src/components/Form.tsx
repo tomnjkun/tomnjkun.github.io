@@ -154,8 +154,8 @@ export const Form = () =>{
     }
 
     return(
-        <Container md >
-            <Card css={{ $$cardColor: 'white',borderRadius:'$0',overflow:'hidden'}}>
+        <Container md>
+            <Card css={{ $$cardColor: 'white',borderRadius:'$0'}}>
                 <Card.Body>
                 <Row justify="center" align="center">
                     <Card css={{ mw: "677px", bg: '#9B6F42',borderRadius:'$0'}} variant="flat">
@@ -187,11 +187,13 @@ export const Form = () =>{
                                 </Row>
                                 <Row align="center" >
                                 <select name="cars" className="SelectStyle" id="mod-select">
-                                    <option value="volvo">นาย</option>
+                                    <option value="Mr.">นาย</option>
+                                    <option value="Mrs.">นาง</option>
+                                    <option value="Miss">นางสาว</option>
                                 </select>
                                 <input placeholder="ชื่อ" className="InputStyle" id="mod-input" name='name' onChange={handleChange} />
                                 </Row>
-                                <Row css={{position:'absolute'}}>
+                                <Row css={{position:'absolute',width:'340px'}}>
                                     <span style={{color: "red"}}>{state.errors.name}</span>
                                 </Row>
                             </Col>
@@ -204,7 +206,7 @@ export const Form = () =>{
                                 <Row align="center" >
                                     <input placeholder="นามสกุล" className="InputStyle" required name='surname' onChange={handleChange}/>
                                 </Row>
-                                <Row css={{position:'absolute'}}>
+                                <Row css={{position:'absolute',width:'340px'}}>
                                     <span style={{color: "red"}}>{state.errors.surname}</span>
                                 </Row>
                             </Col>
@@ -217,7 +219,7 @@ export const Form = () =>{
                                 <Row align="center" >
                                     <input placeholder="xxx-xxxxxxx" className="InputStyle" name='phone' onChange={handleChange} />
                                 </Row>
-                                <Row css={{position:'absolute'}}>
+                                <Row css={{position:'absolute',width:'340px'}}>
                                     <span style={{color: "red"}}>{state.errors.phone}</span>
                                 </Row>
                             </Col>
@@ -240,7 +242,7 @@ export const Form = () =>{
                                     <option value="c8">เดอะมอลล์งามวงศ์วาน ชั้น 1</option>
                                 </select>
                                 </Row>
-                                <Row css={{position:'absolute'}}>
+                                <Row css={{position:'absolute',width:'340px'}}>
                                     <span style={{color: "red"}}>{state.errors.department}</span>
                                 </Row>
                             </Col>
@@ -254,7 +256,7 @@ export const Form = () =>{
                                     <input type="date" className="CalendarStyle" name="date"
                                     value="2023-01-01" min="2018-01-01" max="2023-12-31" onChange={handleChange} />
                                 </Row>
-                                <Row css={{position:'absolute'}}>
+                                <Row css={{position:'absolute',width:'340px'}}>
                                     <span style={{color: "red"}}>{state.errors.date}</span>
                                 </Row>
                             </Col>
@@ -276,7 +278,7 @@ export const Form = () =>{
                                         <option value="round7">19.30 - 20.00</option>
                                     </select>
                                 </Row>
-                                <Row css={{position:'absolute'}}>
+                                <Row css={{position:'absolute',width:'340px'}}>
                                     <span style={{color: "red"}}>{state.errors.time}</span>
                                 </Row>
                             </Col>
@@ -295,7 +297,7 @@ export const Form = () =>{
                                         <option value="round4">ด้านหลัง</option>
                                 </select>
                                 </Row>
-                                <Row css={{position:'absolute'}}>
+                                <Row css={{position:'absolute',width:'340px'}}>
                                     <span style={{color: "red"}}>{state.errors.level}</span>
                                 </Row>
                             </Col>
