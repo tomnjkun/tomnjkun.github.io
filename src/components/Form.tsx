@@ -10,7 +10,7 @@ import { SubTopicText } from "./common";
 
 export const Form = () =>{
     const [state,setState] = useState({
-        username : '',
+        name : '',
         surname : '',
         phone : '',
         department:'',
@@ -37,106 +37,114 @@ export const Form = () =>{
         let errors = state.errors;
         switch (name) {
             case 'name':
-               errors.name = (value.length <= 0 || value == undefined || value == null) ? '*กรุณาใส่ชื่อจริง': '';
-               console.log(value.length)
-               setState(prevState =>({...prevState,
-                    errors:{
-                        ...prevState.errors,username: errors.name,
-                    }})
+                errors.name = (value.length <= 0 || value == undefined || value == null) ? '*กรุณาใส่ชื่อจริง': '';
+                console.log(value.length)
+                setState(prevState =>({...prevState,
+                        errors:{
+                            ...prevState.errors,username: errors.name,
+                        }})
                 );
+                setState(prevState =>({...prevState, name : value}));
                break;
             case 'surname':
                 errors.surname = (value.length <= 0 || value == undefined || value == null) ? '*กรุณาใส่นามสกุล': '';
                 console.log(value.length)
                 setState(prevState =>({...prevState,
                     errors:{
-                        ...prevState.errors,username: errors.surname,
+                        ...prevState.errors,surname: errors.surname,
                     }})
                 );
+                setState(prevState =>({...prevState, surname : value}));
                break;
             case 'phone':
                 errors.phone = (value.length <= 0) ? '*กรุณากรอกเบอร์โทรศัพท์มือถือทั้ง 10 หลัก': '';
-                console.log(value.length)
                 setState(prevState =>({...prevState,
                     errors:{
-                        ...prevState.errors,username: errors.phone,
+                        ...prevState.errors,phone: errors.phone,
                     }})
                 );
+                setState(prevState =>({...prevState, phone : value}));
                break;
             case 'department':
-                errors.phone = (value.length <= 0) ? '*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ': '';
+                errors.department = (value.length <= 0) ? '*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ': '';
                 console.log(value)
                 setState(prevState =>({...prevState,
                     errors:{
-                        ...prevState.errors,username: errors.department,
+                        ...prevState.errors,department: errors.department,
                     }})
                 );
+                setState(prevState =>({...prevState, department : value}));
                break;
             case 'date':
-                errors.phone = (value.length <= 0) ? '*กรุณาเลือกวันที่ที่คุณต้องการเข้ารับบริการ': '';
+                errors.date = (value.length <= 0) ? '*กรุณาเลือกวันที่ที่คุณต้องการเข้ารับบริการ': '';
                 console.log(value.length)
                 setState(prevState =>({...prevState,
                     errors:{
-                        ...prevState.errors,username: errors.date,
+                        ...prevState.errors,date: errors.date,
                     }})
                 );
+                setState(prevState =>({...prevState, date : value}));
                break;
             case 'time':
-                errors.phone = (value.length <= 0) ? '*กรุณาเลือกเวลาที่คุณต้องการเข้ารับบริการ': '';
+                errors.time = (value.length <= 0) ? '*กรุณาเลือกเวลาที่คุณต้องการเข้ารับบริการ': '';
                 console.log(value.length)
                 setState(prevState =>({...prevState,
                     errors:{
-                        ...prevState.errors,username: errors.time,
+                        ...prevState.errors,time: errors.time,
                     }})
                 );
+                setState(prevState =>({...prevState, time : value}));
                break;
             case 'level':
-                errors.phone = (value.length <= 0) ? '*กรุณาเลือกระดับการปกปิด': '';
-                setState(prevState =>({...prevState,errors:{...prevState.errors,username: errors.level,}}));
+                errors.level = (value.length <= 0) ? '*กรุณาเลือกระดับการปกปิด': '';
+                setState(prevState =>({...prevState,errors:{...prevState.errors,level: errors.level,}}));
+                setState(prevState =>({...prevState, level : value}));
                 break;
             default:
               break;
         }
-        //setState({[name]: value});
+
     }
 
     const handleSubmit = () => {
         //event.preventDefault();
-        for (const [key, val] of Object.entries(state.errors)) {
+        Object.entries(state).forEach(entry => {
+            const [key, val] = entry;
+            console.log(key, val)
             let errors = state.errors;
             switch (key) {
                 case 'name':
-                    errors.name = (val == undefined || val == null || val=='' || val=='*กรุณาใส่ชื่อจริง') ? '*กรุณาใส่ชื่อจริง': '';
+                    errors.name = (val == undefined || val == null || val=='') ? '*กรุณาใส่ชื่อจริง': '';
                     setState(prevState =>({...prevState,errors:{...prevState.errors,name: errors.name,}}));
                     break;
                 case 'surname':
-                    errors.surname = (val == undefined || val == null || val=='' || val=='*กรุณาใส่นามสกุล') ? '*กรุณาใส่นามสกุล': '';
+                    errors.surname = (val == undefined || val == null || val=='') ? '*กรุณาใส่นามสกุล': '';
                     setState(prevState =>({...prevState,errors:{...prevState.errors,surname: errors.surname,}}));
                     break;
                 case 'phone':
-                    errors.phone = (val == undefined || val == null || val=='' || val=='*กรุณากรอกเบอร์โทรศัพท์มือถือทั้ง 10 หลัก') ? '*กรุณากรอกเบอร์โทรศัพท์มือถือทั้ง 10 หลัก': '';
+                    errors.phone = (val == undefined || val == null || val=='') ? '*กรุณากรอกเบอร์โทรศัพท์มือถือทั้ง 10 หลัก': '';
                     setState(prevState =>({...prevState,errors:{...prevState.errors,phone: errors.phone,}}));
                     break;
                 case 'department':
-                    errors.department = (val == undefined || val == null || val=='' || val=='*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ') ? '*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ': '';
+                    errors.department = (val == undefined || val == null || val=='') ? '*กรุณาเลือกสาขาที่คุณต้องการเข้ารับบริการ': '';
                     setState(prevState =>({...prevState,errors:{...prevState.errors,department: errors.department,}}));
                     break;
                 case 'date':
-                    errors.date = (val == undefined || val == null || val=='' || val=='*กรุณาเลือกวันที่ที่คุณต้องการเข้ารับบริการ') ? '*กรุณาเลือกวันที่ที่คุณต้องการเข้ารับบริการ': '';
+                    errors.date = (val == undefined || val == null || val=='') ? '*กรุณาเลือกวันที่ที่คุณต้องการเข้ารับบริการ': '';
                     setState(prevState =>({...prevState,errors:{...prevState.errors,date: errors.date,}}));
                     break;
                 case 'time':
-                    errors.time = (val == undefined || val == null || val=='' || val=='*กรุณาเลือกเวลาที่คุณต้องการเข้ารับบริการ') ? '*กรุณาเลือกเวลาที่คุณต้องการเข้ารับบริการ': '';
+                    errors.time = (val == undefined || val == null || val=='') ? '*กรุณาเลือกเวลาที่คุณต้องการเข้ารับบริการ': '';
                     setState(prevState =>({...prevState,errors:{...prevState.errors,time: errors.time,}}));
                     break;
                 case 'level':
-                    errors.level = (val == undefined || val == null || val=='' || val=='*กรุณาเลือกระดับการปกปิด') ? '*กรุณาเลือกระดับการปกปิด': '';
+                    errors.level = (val == undefined || val == null || val=='') ? '*กรุณาเลือกระดับการปกปิด': '';
                     setState(prevState =>({...prevState,errors:{...prevState.errors,level: errors.level,}}));
                     break;
                 default:
                 break;
             }
-        }
+        })
      }
 
     const sample = (event:any) =>{
@@ -222,14 +230,14 @@ export const Form = () =>{
                                 <Row>
                                 <select name="department" className="SelectStyle" onChange={handleChange}>
                                     <option value="" disabled selected></option>
-                                    <option value="">เซ็นทรัลบางนา ชั้น 1</option>
-                                    <option value="">เซ็นทรัลพระราม2 ชั้น 1</option>
-                                    <option value="">เซ็นทรัลเมกาบางนา ชั้น 1</option>
-                                    <option value="">เซ็นทรัลปิ่นเกล้า ชั้น 1</option>
-                                    <option value="">เซ็นทรัลลาดพร้าว ชั้น 1</option>
-                                    <option value="">เซ็นทรัลเวสต์เกต ชั้น 1</option>
-                                    <option value="">สยามพารากอน ชั้น M</option>
-                                    <option value="">เดอะมอลล์งามวงศ์วาน ชั้น 1</option>
+                                    <option value="c1">เซ็นทรัลบางนา ชั้น 1</option>
+                                    <option value="c2">เซ็นทรัลพระราม2 ชั้น 1</option>
+                                    <option value="c3">เซ็นทรัลเมกาบางนา ชั้น 1</option>
+                                    <option value="c4">เซ็นทรัลปิ่นเกล้า ชั้น 1</option>
+                                    <option value="c5">เซ็นทรัลลาดพร้าว ชั้น 1</option>
+                                    <option value="c6">เซ็นทรัลเวสต์เกต ชั้น 1</option>
+                                    <option value="c7">สยามพารากอน ชั้น M</option>
+                                    <option value="c8">เดอะมอลล์งามวงศ์วาน ชั้น 1</option>
                                 </select>
                                 </Row>
                                 <Row css={{position:'absolute'}}>
@@ -244,7 +252,7 @@ export const Form = () =>{
                                 </Row>
                                 <Row>
                                     <input type="date" className="CalendarStyle" name="date"
-                                    value="2023-01-01" min="2018-01-01" max="2023-12-31" />
+                                    value="2023-01-01" min="2018-01-01" max="2023-12-31" onChange={handleChange} />
                                 </Row>
                                 <Row css={{position:'absolute'}}>
                                     <span style={{color: "red"}}>{state.errors.date}</span>
@@ -257,7 +265,7 @@ export const Form = () =>{
                                     <Text span css={LabelStyle}>เลือกเวลาเพื่อเข้ารับบริการ</Text>
                                 </Row>
                                 <Row>
-                                    <select name="cars" className="SelectStyle" >
+                                    <select name="time" className="SelectStyle" onChange={handleChange}>
                                         <option value="" disabled selected></option>
                                         <option value="round1">12.00 -12.30</option>
                                         <option value="round2">13.00 -13.30</option>
@@ -279,7 +287,7 @@ export const Form = () =>{
                                     <Text span css={LabelStyle}>เลือกระดับการปกปิดของรองพื้นที่ต้องการ</Text>
                                 </Row>
                                 <Row>
-                                <select name="cars" className="SelectStyle" >
+                                <select name="level" className="SelectStyle" onChange={handleChange}>
                                         <option value="" disabled selected></option>
                                         <option value="round1">ด้านซ้าย</option>
                                         <option value="round2">ด้านขวา</option>
