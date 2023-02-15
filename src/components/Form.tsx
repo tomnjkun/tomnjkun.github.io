@@ -217,7 +217,7 @@ export const Form = () =>{
                         <Grid xs={12} sm={6} md={6} css={{padding:'16px 12px 16px'}}>
                             <Col>
                                 <Row>
-                                    <Text span css={LabelStyle}>เลือกสาชาที่สะดวกเข้ารับบริการ</Text>
+                                    <Text span css={LabelStyle}>เลือกสาขาที่สะดวกเข้ารับบริการ</Text>
                                 </Row>
                                 <Row>
                                 <select name="department" className="SelectStyle" onChange={handleChange}>
